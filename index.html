@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Comparador de Vocales</title>
+    <style>
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #e8bf8d;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #5068e0;
+        }
+        .container {
+            background: url(./fondo.jpg) no-repeat;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(28, 213, 255, 0.906);
+        }
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #dc52ba;
+            color: rgb(162, 236, 234);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #f82a76;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comparador de Vocales</h1>
+        <input type="text" id="frase1" placeholder="Introduce la primera frase">
+        <input type="text" id="frase2" placeholder="Introduce la segunda frase">
+        <br>
+        <br>
+        <button onclick="compararVocales()">Comparar Vocales</button>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function contraVocales(texto) {
+            const vocales = 'aeiouáéíóúAEIOUÁÉÍÓÚ';
+            let contador = 0;
+            for (let char of texto) {
+                if (vocales.includes(char)) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+
+        function compararVocales() {
+            const frase1 = document.getElementById('frase1').value;
+            const frase2 = document.getElementById('frase2').value;
+            const numVocales1 = contraVocales(frase1);
+            const numVocales2 = contraVocales(frase2);
+            
+            const resultado = document.getElementById('resultado');
+            if (numVocales1 === numVocales2) {
+                resultado.innerText = `Ambas frases tienen el mismo número de vocales: ${numVocales1}.`;
+            } else {
+                resultado.innerText = `Frase 1 tiene ${numVocales1} vocales, Frase 2 tiene ${numVocales2} vocales. No son iguales.`;
+            }
+        }
+    </script>
+</body>
+</html>
